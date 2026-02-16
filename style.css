@@ -1,0 +1,1796 @@
+/* Подключаем обычный шрифт (Regular) */
+@font-face {
+  font-family: "SF Pro Display"; /* имя которое будем использовать */
+  src: url("fonts\SF-Pro-Display-Black.otf") format("opentype"); /* путь к файлу */
+  font-weight: 500; /* обычный вес */
+  font-style: normal; /* обычный стиль */
+}
+
+/* Подключаем Medium */
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("fonts\SF-Pro-Display-Medium.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Подключаем Bold */
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("fonts\SF-Pro-Display-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+body{
+  font-family: "SF Pro Display", sans-serif;
+}
+
+
+
+
+/*  ОБЩИЙ КОНТЕЙНЕР САЙТА */
+.wrapper{
+   width: 100%; 
+  max-width: 1920px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+
+
+
+/* ШАПКА */
+header{
+  height: 90px;
+  background: #fff;
+}
+
+/* 3 колонки: слева / центр / справа */
+
+ header .container{
+  max-width: 1920px;       /* ограничение ширины */
+  height: 100%;            /* высота = header */
+  margin: 0 auto;          /* центр */
+  padding: 0 80px;         /* отступы слева/справа */
+  box-sizing: border-box;  /* padding не раздувает ширину */
+
+  display: grid;           /* сетка */
+  grid-template-columns: 1fr auto 1fr; /* левый / центр / правый */
+  align-items: center;     /* вертикально по центру */
+ }
+
+/* позиционирование колонок */
+header .left{ justify-self: start; }
+header .center{ justify-self: center; }
+header .right{ justify-self: end; }
+
+/* внутреннее выравнивание в левой и правой колонке */
+header .left,
+header .right{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.right{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  justify-content: flex-end; /* ← ВАЖНО */
+  text-align: right;
+}
+
+/* ====== БУРГЕР ====== */
+.burger{
+  background: transparent; /* без фона */
+  border: none;            /* без рамки */
+  padding: 0;              /* без внутренних отступов */
+  cursor: pointer;         /* курсор-рука */
+  display: inline-flex;    /* чтобы нормально встал */
+  align-items: center;     /* центр по вертикали */
+}
+.burger img{
+  display: block;
+  height: 36px;   
+  width: auto;
+}
+
+
+
+
+.flat-btn{
+  position: relative;          /* база для пятна */
+  overflow: hidden;            /* ОБРЕЗАЕТ всё, что вылезает */
+  border-radius: 60px;         /* форма кнопки */
+
+  height: 56px;
+  padding: 0 28px;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #000;
+  transition: color 2s ease;
+}
+
+/* текст всегда сверху */
+.flat-btn__text{
+  position: relative;
+  z-index: 2;
+}
+
+/* пятно ВНУТРИ кнопки */
+.flat-btn__blob{
+  position: absolute;
+  left: 50%;
+  bottom: -30px;               /* пятно “под кнопкой”, но внутри */
+  width: 18px;                 /* маленькое пятно */
+  height: 18px;
+  border-radius: 50%;
+  background: #000;
+
+  transform: translateX(-50%) scale(0);  /* спрятано */
+  transition: transform 2s cubic-bezier(.22,1,.36,1);
+  z-index: 1;                   /* под текстом */
+  pointer-events: none;          /* не мешает клику */
+}
+
+/* при наведении пятно растёт и заполняет кнопку */
+.flat-btn:hover .flat-btn__blob{
+  transform: translateX(-50%) scale(25); /* подбирай 18–30 */
+}
+
+.flat-btn:hover{
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+.logo{
+  display: block;
+  width: 177px; 
+  height: auto;
+}
+
+
+.tel{
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #A5A2AC;
+  white-space: nowrap;
+}
+
+.order-call{
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  white-space: nowrap;
+  line-height: 150%;
+}
+.order-call span{
+  display: inline-block;         /* анимируем именно span */
+  will-change: transform, opacity; /* подсказка браузеру */
+}
+/* при наведении запускаем анимацию */
+.order-call:hover span{
+  animation: callBounce 2s ease-in-out; /* длительность + плавность */
+}
+
+/* ключевые кадры (движение и скрытие) */
+@keyframes callBounce{
+  0%{
+    transform: translateY(0);    /* старт: на месте */
+    opacity: 1;                 /* видимый */
+  }
+  40%{
+    transform: translateY(-10px); /* чуть вверх (меняй -6px если нужно) */
+    opacity: 0;                  /* исчезает */
+  }
+  60%{
+    transform: translateY(15px);  /* появляется чуть ниже (эффект возврата) */
+    opacity: 0;                  /* ещё не видно */
+  }
+  100%{
+    transform: translateY(0);    /* возвращается на место */
+    opacity: 1;                 /* снова видимый */
+  }
+}
+
+
+/* на всякий случай: убрать стандартный outline у кнопок при клике мышью */
+.burger:focus,
+.flat-btn:focus{
+  outline: none;
+}
+
+
+
+/* ====== МОБИЛЬНЫЕ ЭЛЕМЕНТЫ ПО УМОЛЧАНИЮ СКРЫТЫ ====== */
+.button-mob,
+.logo-mob,
+.telephone-mob{
+  display: none;
+}
+
+
+
+/* ============================= */
+/* ====== MOBILE HEADER 414 ===== */
+/* ============================= */
+@media (max-width: 415px){
+
+  /* фон и высота как на макете */
+  header{
+    height: 90px;
+ 
+  }
+
+  /* контейнер */
+  header .container{
+    padding: 0 20px;              /* вместо 80px */
+    grid-template-columns: 44px 1fr 56px; /* бургер / центр / телефон */
+    column-gap: 0;
+  }
+
+  /* чтобы элементы не растягивались */
+  header .left,
+  header .right{
+    gap: 0;
+  }
+
+  /* ----------------------- */
+  /* СКРЫВАЕМ ДЕСКТОПНЫЕ */
+  /* ----------------------- */
+  .burger,
+  .flat-btn,
+  .logo,
+  .tel,
+  .order-call{
+    display: none;
+  }
+
+  /* ----------------------- */
+  /* ПОКАЗЫВАЕМ МОБИЛЬНЫЕ */
+  /* ----------------------- */
+  .button-mob,
+  .logo-mob,
+  .telephone-mob{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* левая кнопка (бургер) */
+  .button-mob{
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .button-mob img{
+    width: 28px;   /* под твой png можно менять */
+    height: auto;
+    display: block;
+  }
+
+  /* логотип по центру */
+  .center{
+    justify-self: center;
+  }
+  .logo-mob{
+    width: 180px; /* подгони под макет */
+    height: auto;
+    display: block;
+  }
+
+  /* телефон справа (иконка уже с обводкой) */
+  .right{
+    justify-self: end;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .telephone-mob{
+    width: 56px;
+    height: 56px;
+    text-decoration: none;
+  }
+  .telephone-mob img{
+    width: 56px;   /* если картинка уже в круге */
+    height: 56px;
+    display: block;
+  }
+
+}
+
+
+
+
+
+
+
+
+:root{
+  --header-h: 120px;        /* высота шапки внутри меню (меняй если выше/ниже нужно) */
+  --right-pad-x: 90px;      /* отступ справа у телефона и контента */
+  --left-w: 767px;          /* ширина картинки слева (главный параметр для подгона) */
+}
+
+/* ===== затемнённый фон ===== */
+.menu-overlay{
+  position: fixed;          /* фиксируем поверх всей страницы */
+  inset: 0;                 /* растягиваем на весь экран */
+  z-index: 9999;            /* поверх всего */
+  background: rgba(0,0,0,.65); /* тёмный фон */
+
+  opacity: 0;               /* изначально скрыт */
+  visibility: hidden;       /* не виден */
+  pointer-events: none;     /* нельзя кликнуть */
+  transition: opacity .35s ease, visibility .35s ease; /* плавность */
+}
+
+/* когда меню открыто */
+.menu-overlay.is-open{
+  opacity: 1;               /* делаем видимым */
+  visibility: visible;      /* показываем */
+  pointer-events: auto;     /* можно кликать */
+}
+
+
+body.no-scroll{
+  overflow: hidden;
+}
+
+
+/* ===== сама панель меню ===== */
+.menu-panel{
+  position: fixed;          /* фиксируем */
+  inset: 0;                 /* на весь экран */
+  background: #F4F6FB;      /* светлый фон */
+  overflow: hidden;         /* скрываем лишнее */
+
+  transform: translateX(-110%); /* уезжает влево за экран */
+  transition: transform .55s cubic-bezier(.22,.8,.24,1); /* плавный выезд */
+  will-change: transform;   /* оптимизация анимации */
+}
+
+/* когда меню открыто — возвращаем */
+.menu-overlay.is-open .menu-panel{
+  transform: translateX(0); /* выезжает на экран */
+}
+
+/* ===== крестик закрытия ===== */
+.menu-close{
+  position: absolute;       /* позиционируем вручную */
+  top: 36px;                /* отступ сверху */
+  left: 84px;               /* отступ слева */
+
+  width: 44px;              /* размер кнопки */
+  height: 44px;
+
+  border: 0;                /* убираем рамку */
+  background: transparent;  /* прозрачный фон */
+  cursor: pointer;          /* курсор-рука */
+
+  font-size: 40px;          /* размер крестика */
+  line-height: 44px;        /* центрирование внутри кнопки */
+  color: #A5A2AC;           /* серый цвет */
+
+  z-index: 20;              /* выше картинки */
+}
+
+/* ===== шапка внутри меню ===== */
+.menu-top{
+  position: absolute;       /* кладём поверх панели */
+  left: 0;
+  right: 0;
+  top: 0;
+
+  height: var(--header-h);  /* высота шапки */
+  z-index: 15;              /* выше контента */
+}
+
+/* логотип по центру экрана */
+.menu-top-center{
+  position: absolute;
+  left: 1070px;                /* центр по ширине */
+  top: 50%;                 /* центр по высоте */
+  transform: translate(-50%, -50%); /* идеальное центрирование */
+}
+
+.menu-logo{
+  width: 177px;             /* ширина логотипа */
+  height: 52px;             /* высота */
+  display: block;           /* убираем лишние отступы img */
+}
+
+/* телефон и кнопка справа */
+.menu-top-right{
+  position: absolute;
+  right: var(--right-pad-x); /* отступ от правого края */
+  top: 50%;
+  transform: translateY(-50%); /* центр по вертикали */
+
+  display: flex;            /* ставим в ряд */
+  gap: 64px;                /* расстояние между ними */
+  align-items: center;      /* выравниваем по высоте */
+}
+
+/* убираем синие/фиолетовые цвета ссылок */
+.menu-tel,
+.menu-tel:visited,
+.menu-call,
+.menu-call:visited,
+.menu-link,
+.menu-link:visited{
+
+  text-decoration: none;
+}
+
+/* стиль телефона */
+.menu-tel{
+  font-size: 16px;          /* размер текста */
+  color: #A5A2AC;           /* серый */
+  font-weight: 500;
+  letter-spacing: 0em;
+  line-height: 150%;
+  white-space: nowrap;      /* не переносится */
+}
+
+/* стиль "заказать звонок" */
+.menu-call{
+  font-size: 16px;
+color: #000000;
+  font-weight: 500;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;         /* чтобы transform работал корректно */
+  overflow: hidden;              /* чтобы текст "прятался", когда уезжает */
+  line-height: 150%;  
+}
+
+
+.menu-call span{
+  display: inline-block;         /* анимируем именно span */
+  will-change: transform, opacity; /* подсказка браузеру */
+}
+
+/* при наведении запускаем анимацию */
+.menu-call:hover span{
+  animation: callBounce 2s ease-in-out; /* длительность + плавность */
+}
+
+/* ключевые кадры (движение и скрытие) */
+@keyframes callBounce{
+  0%{
+    transform: translateY(0);    /* старт: на месте */
+    opacity: 1;                 /* видимый */
+  }
+  40%{
+    transform: translateY(-10px); /* чуть вверх (меняй -6px если нужно) */
+    opacity: 0;                  /* исчезает */
+  }
+  60%{
+    transform: translateY(15px);  /* появляется чуть ниже (эффект возврата) */
+    opacity: 0;                  /* ещё не видно */
+  }
+  100%{
+    transform: translateY(0);    /* возвращается на место */
+    opacity: 1;                 /* снова видимый */
+  }
+}
+
+
+
+
+
+/* ===== левая картинка ===== */
+.menu-left{
+  position: absolute;
+  left: 0;
+  top: var(--header-h);     /* начинается ниже шапки */
+  bottom: 0;
+
+  width: var(--left-w);     /* ширина картинки */
+}
+
+.menu-photo{
+  width: 767px;              /* растягиваем */
+  height: 1080px;
+  display: block;
+  object-fit:cover; /* обрезка без искажений */
+}
+
+/* ===== тело меню (текст справа) ===== */
+.menu-body{
+  position: absolute;
+  left: 900px; 
+  right: 0;
+  top: var(--header-h);     /* ниже шапки */
+  bottom: 0;
+
+  padding: 175px var(--right-pad-x); /* внутренние отступы */
+  box-sizing: border-box;   /* чтобы padding не ломал ширину */
+}
+
+/* ===== колонки ===== */
+.menu-columns{
+  max-width: 900px;         /* ограничиваем ширину текста */
+  margin: 0 auto;           /* центрируем внутри правой зоны */
+
+  display: grid;            /* сетка */
+  grid-template-columns: 1fr 1fr; /* 2 колонки */
+  column-gap: 80px;        /* расстояние между колонками */
+}
+
+/* каждая колонка */
+.menu-col{
+  display: flex;
+  flex-direction: column;
+  gap: 64px;                /* расстояние между блоками */
+}
+
+/* заголовки */
+.menu-title{
+  margin: 0 0 14px 0;
+  font-size: 32px;
+  font-weight: 500;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0em;
+  line-height: 160%;
+}
+
+/* ссылки */
+.menu-link{
+  display: block;
+  margin-top: 14px;
+  font-size: 24px;
+  color: #A5A2AC;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0em;
+  line-height: 160%;
+   transition: color 0.3s ease; 
+}
+
+/* hover */
+.menu-link:hover{
+  color:#D1CDDA;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================= */
+/* HEADER MOBILE 414 */
+/* ============================= */
+@media (max-width: 414px){
+
+  header{
+    height: 90px;
+    background: #F2F2F4;      /* как в макете */
+  }
+
+  header .container{
+    padding: 0 20px;
+    grid-template-columns: 44px 1fr 56px; /* бургер / лого / телефон */
+  }
+
+  /* скрываем десктоп элементы */
+  .burger,
+  .flat-btn,
+  .tel,
+  .order-call,
+  .logo{
+    display: none !important;
+  }
+
+  /* показываем мобильные */
+  .button-mob,
+  .logo-mob,
+  header .right .telephone-mob{
+    display: block !important;
+  }
+
+  /* левая кнопка (бургер) */
+  .button-mob{
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .button-mob img{
+    width: 26px;
+    height: 18px;
+    display: block;
+  }
+
+  /* логотип по центру */
+  .logo-mob{
+    width: 160px;
+    height: auto;
+    display: block;
+  }
+
+  /* телефон справа */
+  header .right .telephone-mob{
+    width: 56px;
+    height: 56px;
+    display: block;
+  }
+  header .right .telephone-mob img{
+    width: 56px;
+    height: 56px;
+    display: block;
+  }
+
+  /* чтобы не было лишних gap-ов */
+  header .left,
+  header .right{
+    gap: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* базово меню закрыто */
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 9999;
+}
+
+.menu-overlay.is-open{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* блокировка скролла */
+body.no-scroll{ overflow: hidden; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hero {
+    padding-left: 80px;
+    padding-top: 35px;
+}
+
+
+
+.container_three{
+    margin-top: 60px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: 400;
+}
+
+.hero-features img {
+    height: 1px;
+    width: 20px;
+}
+
+
+.img-mob{
+    display: none;
+}
+
+.container_three_dop{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #000000;
+     gap: 16px;
+     font-weight: 400;
+}
+.container_three_dop img{
+        height: 1px;
+    width: 20px;
+}
+
+.hero-title{
+  font-size: 24px;  
+  font-weight: 500;
+  line-height: 160%;
+    text-transform: uppercase;
+color: #A5A2AC;
+}
+
+.btn_two {
+    width: 380px;
+    height: 69px;
+    padding: 24px 21px;
+    border-radius: 60px;
+    font-size: 16px;
+    font-weight: 500;
+ background-color: #000;
+    color: #fff;           
+    cursor: pointer;
+
+
+    display: inline-flex;          /* чтобы текст центрировался */
+    align-items: center;           /* центр по вертикали */
+    justify-content: center;       /* центр по горизонтали */
+
+    overflow: hidden;              /* прячем текст при движении */
+    border: none;                  /* убираем стандартную рамку */
+}
+
+.btn_two span{
+    display: inline-block;         /* чтобы transform работал */
+    will-change: transform, opacity; /* оптимизация */
+}
+
+/* при наведении запускаем анимацию */
+.btn_two:hover span{
+    animation: btnBounce 2s ease-in-out;
+}
+
+/* ключевые кадры анимации */
+@keyframes btnBounce{
+    0%{
+        transform: translateY(0);   /* старт */
+        opacity: 1;
+    }
+    40%{
+        transform: translateY(-10px); /* чуть вверх */
+        opacity: 0;                  /* исчезает */
+    }
+    60%{
+        transform: translateY(15px);  /* появляется снизу */
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);    /* возвращается */
+        opacity: 1;
+    }
+}
+
+.cluster-title{
+    font-size: 144px;
+      font-weight: 500;
+    margin-top: -160px;
+    padding-left: 900px;
+}
+
+
+
+
+/* ============================= */
+/* HERO MOBILE 414 — как в макете */
+/* ============================= */
+@media (max-width: 414px){
+ .container_three img,
+  .container_three_dop img{
+    display: none;
+  }
+  /* делаем колонку и фон под контентом */
+  .hero{
+    padding: 17px 0 0 0;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  /* "распаковываем" container_two без правки HTML */
+  .container_two{
+    display: contents;
+  }
+
+  /* --- КАРТИНКА ВЕРХОМ --- */
+  .img-ferst{ display: none; }
+
+  .img-mob{
+    display: block;
+    order: 1;
+
+    width: 100%;
+    height: 420px;          /* подгонка высоты как в макете */
+    object-fit: cover;      /* ОБРЕЗКА */
+    object-position: center;
+  }
+
+  /* --- КЛАСТЕР СРАЗУ ПОД ФОТО --- */
+  .cluster-title{
+    order: 2;
+
+    margin-top: 17px;
+    padding: 17px 0px 0;
+
+    font-size: 64px;
+    line-height: 1.05;
+    font-weight: 500;
+    color: #000;
+  }
+
+.container_three,
+.container_three_dop{
+  order: 3;
+
+  margin: 20px 0 0 0;
+  padding: 0 17px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+
+  font-size: 14px;      /* в макете текст крупнее */
+  font-weight: 400;     /* НЕ 500 */
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #000;
+}
+.container_three_dop{
+  order: 4;
+  margin-top: 14px;
+}
+
+
+  /* --- СЕРЫЙ ЗАГОЛОВОК --- */
+  .hero-title{
+    order: 5;
+    margin: 30px 0 0 0;
+    padding-bottom: 0;
+    padding-left: 17px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #A5A2AC;
+  }
+
+  /* --- КНОПКА НА ВСЮ ШИРИНУ --- */
+  .btn_two{
+    order: 6;
+display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: calc(100% - 44px);
+    height: 64px;
+
+    margin: 24px auto 40px;
+    border-radius: 60px;
+    font-size: 14px;
+  }
+
+
+  .btn_two{
+    overflow: hidden;      /* уже есть, но важно */
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn_two span{
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  /* запуск на тап/удержание */
+  .btn_two:active span{
+    animation: btnSlideUp 650ms ease-in-out;
+  }
+
+  /* запуск если кнопка получила фокус (например, табом) */
+  .btn_two:focus-visible span{
+    animation: btnSlideUp 650ms ease-in-out;
+  }
+
+  /* если будешь добавлять класс через JS */
+  .btn_two.is-anim span{
+    animation: btnSlideUp 650ms ease-in-out;
+  }
+
+  @keyframes btnSlideUp{
+    0%{
+      transform: translateY(0);
+      opacity: 1;
+    }
+    35%{
+      transform: translateY(-16px); /* уехал вверх */
+      opacity: 0;
+    }
+    55%{
+      transform: translateY(16px);  /* появился снизу */
+      opacity: 0;
+    }
+    100%{
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.home-content{
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+.home{
+    padding: 100px 234px;
+}
+.top-row .home-text{
+    display: flex;
+    align-items: flex-start;   
+    
+}
+.home img {
+    width: 73px;
+    height: 11px;
+    display: block;
+
+}
+
+.home-text h1{
+    margin: 0;
+    padding-top: 60px;
+    font-size: 64px;
+    font-weight: 500;
+    color: #000000;     
+         width: 250px;   
+  white-space: nowrap; 
+}
+.home-text p{
+     margin: 0;  
+      margin-top: 60px;
+    font-size: 24px;
+    color: #000;
+    width: 687px; 
+    margin-left: 500px;
+    background-color: #D1CDDA;
+    padding: 16px 24px;
+
+  font-family: "SF Pro Display", sans-serif; /* явно указываем шрифт */
+  font-weight: 500;
+}
+
+
+
+.home-text-two{
+     font-size: 24px;
+    color: #000;
+    margin-top: 0px;
+      font-family: "SF Pro Display", sans-serif; 
+  font-weight: 500;
+  max-width: 687px;   /* ограничиваем ширину */
+  line-height: 1.5;   /* расстояние между строками */
+  margin: 0;          /* убираем стандартные отступы */
+}
+
+.bottom-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+.left{
+  max-width: 687px; 
+}
+
+
+.right{
+  width: 687px; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px 80px;
+}
+
+.info{
+  display: flex;               /* делаем колонку */
+  flex-direction: column;      /* вертикально */
+  align-items: flex-start;     /* прижать к левому краю */
+  
+}
+
+.value{
+  display: block;
+  font-size: 32px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #A5A2AC;
+text-align: left;
+width: 100%;         
+}
+
+.label{
+  font-size: 16px;
+  color: #A5A2AC;
+   font-weight: 500;
+}
+
+
+/* ============================= */
+/* HOME MOBILE 414 — выровнено как в макете */
+/* ============================= */
+@media (max-width: 414px){
+
+  .home{
+    padding: 40px 22px 56px;   /* верх меньше, низ чуть больше */
+  }
+
+  /* маленькая полоска */
+  .home > img{
+    width: 70px;
+    height: 10px;
+    display: block;
+    margin: 0 0 18px 0;        /* БЕЗ огромных 50px */
+  }
+
+  .home-content{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* верхняя часть */
+  .top-row .home-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .home-text h1{
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  /* серый бейдж — как на макете */
+  .home-text p{
+    margin: 0;
+    width: 100%;               /* ВАЖНО: не 332px */
+    background: #D1CDDA;
+
+    padding: 18px 18px;        /* ровные внутренние отступы */
+    font-size: 14px;           /* ближе к макету */
+    line-height: 1.45;
+    font-weight: 500;
+
+    box-sizing: border-box;
+  }
+@media (max-width: 414px){
+
+  /* Серый блок: переносы как в макете */
+  .home-text p{
+    white-space: normal;
+    overflow-wrap: normal;     /* не ломаем слова */
+    word-break: normal;        /* не режем слова */
+    hyphens: auto;             /* если в языке есть переносы */
+    text-wrap: balance;        /* аккуратнее строки (где поддерживается) */
+  }
+
+  /* Убираем влияние <br> на мобилке */
+  .home-text p br{
+    display: none;
+  }
+}
+
+  /* нижняя часть */
+  .bottom-row{
+    display: flex;
+    flex-direction: column;
+    gap: 26px;                 /* плотнее как в макете */
+  }
+
+  .left{
+    max-width: 100%;
+  }
+
+  .home-text-two{
+    margin: 0;
+    font-size: 14px;           /* как в макете — компактнее */
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* характеристики 2х2 */
+  .right{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 22px;
+    row-gap: 26px;
+  }
+
+  .info{
+    width: 100%;
+  }
+
+  .value{
+    margin: 0;
+    padding: 0 0 10px 0;
+    font-size: 18px;           /* как в макете — не слишком огромный */
+    line-height: 1.1;
+    font-weight: 500;
+
+    border-bottom: 2px solid #A5A2AC;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .label{
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 1.3;
+    font-weight: 500;
+    color: #A5A2AC;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.slider-section{
+
+  padding: 60px 0;
+}
+
+.slider{
+  position: relative;
+  width: 1762px;
+  height: 800px;
+  margin: 60px auto 0;
+}
+
+.slide{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.img-for-mob{
+  display: none;
+}
+
+
+
+/* ============================= */
+/* SLIDER MOBILE 414 */
+/* ============================= */
+@media (max-width: 414px){
+
+  /* показываем мобильную картинку */
+  .img-for-mob{
+    display: block;
+    width: 100%;
+    height: 420px;          /* подгони под макет */
+    object-fit: cover;      /* обрезка */
+    object-position: center;
+  }
+
+  /* скрываем десктопный слайдер */
+  .slider{
+    display: none;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+.digital {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 100px 130px;
+  gap: 200px;
+  margin-top: 60px;
+}
+
+.digital .digital-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.digital .digital-left h1,
+.digital .digital-left h2 {
+  margin: 0;
+  line-height: 1.05;
+}
+
+.digital .digital-left h1 {
+  font-size: 64px;
+  font-weight: 500;
+  color: #000;
+}
+
+.digital .digital-left h2 {
+  font-size: 64px;
+  font-weight: 400;
+  color: #A5A2AC;
+}
+
+.digital-text {
+  margin: 0;
+  margin-top: 50px;
+  max-width: 687px;
+  font-size: 24px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #000;
+}
+.digital-line {
+width: 73px;
+  height: 11px;
+  margin-bottom: 24px;
+
+}
+
+
+
+
+
+/* ============================= */
+/* DIGITAL MOBILE 414 — как в макете */
+/* ============================= */
+@media (max-width: 414px){
+
+  .digital{
+    padding: 56px 22px;   /* как секции выше */
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .digital-left{
+    gap: 10px;            /* плотнее как в макете */
+  }
+
+  .digital-line{
+    width: 70px;
+    height: 10px;
+    margin: 0 0 18px 0;   /* полоска + отступ вниз */
+    display: block;
+  }
+
+  .digital .digital-left h1{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .digital .digital-left h2{
+    font-size: 32px;
+    font-weight: 500;     /* чтобы было как в макете (не тонко) */
+    color: #A5A2AC;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .digital-text{
+    margin: 10px 0 0 0;
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.features{
+  padding: 100px 130px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  column-gap: 80px;
+  align-items: start;
+}
+
+/* левая колонка */
+.features-left .counter{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 24px;
+}
+
+.features-left .counter img{
+  height: 1px;
+  width: 150px;
+}
+
+.arrows{
+  margin-top: 136px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.arrow{
+  position: relative; /* нужно для псевдоэлемента */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 140px;                /* можно задать фикс. размер */
+  height: 140px;
+
+ border-radius: 50%;        /* делаем её круглой */
+  border: 1px solid #A5A2AC; /* обводка круга */
+
+
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;           /* чтобы круг не вылезал */
+}
+/* растущий кружок */
+.arrow::before{
+  content: "";
+  position: absolute;
+  width: 70px;                /* размер круга */
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1); /* цвет круга (меняй если нужно) */
+
+  transform: scale(0);        /* изначально круг маленький */
+  transition: transform 1s ease; /* плавное появление */
+}
+
+/* при наведении увеличиваем круг */
+.arrow:hover::before{
+  transform: scale(1.5);        /* круг вырастает */
+}
+
+/* сама стрелка поверх круга */
+.arrow img{
+  position: relative;         /* чтобы быть выше круга */
+  z-index: 2;
+  display: block;
+ 
+}
+
+/* правая часть — окно */
+.features-viewport{
+  overflow: hidden;
+}
+
+/* лента со слайдами */
+.features-track{
+  display: flex;
+  gap: 80px;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* карточка */
+.card{
+  flex: 0 0 533px;                 /* ширина карточки */
+  height: 600px;                   /* высота карточки */
+  background: #D1CDDA;             /* серый фон (он всегда остаётся под ним) */
+  padding: 32px;                   /* внутренние отступы */
+  position: relative;              /* нужно для ::before и позиционирования */
+  overflow: hidden;                /* чтобы "заплывание" не вылезало наружу */
+  display: flex;                   /* раскладываем контент внутри */
+  flex-direction: column;          /* иконка сверху, текст снизу */
+  justify-content: space-between;  /* прижимаем текст вниз */
+
+  transition: color 0.45s ease;    /* плавность смены цветов (общая) */
+}
+
+/* ЧЁРНЫЙ СЛОЙ, который "заплывает" */
+.card::before{
+  content: "";                     /* обязательное свойство для псевдоэлемента */
+  position: absolute;              /* слой поверх карточки */
+  inset: 0;                        /* растягиваем на всю карточку */
+  background: #000;                /* цвет заливки */
+  transform: scaleY(0);            /* изначально слоя нет (0 по ширине) */
+  transform-origin: bottom;              /* рост начинается снизу */
+
+  transition: transform 2s cubic-bezier(.22,.8,.24,1); /* плавный "заплыв" */
+  z-index: 0;                      /* слой под контентом */
+}
+
+/* весь контент карточки поверх чёрного слоя */
+.card > *{
+  position: relative;              /* чтобы поднять над ::before */
+  z-index: 1;                      /* выше чёрного слоя */
+}
+
+/* текст снизу */
+.card p{
+  margin: 0;                       /* убираем стандартные отступы */
+  font-size: 24px;                 /* размер */
+  line-height: 1.6;                /* межстрочный */
+  color: #111;                     /* цвет на серой карточке */
+  max-width: 500px;                /* ограничение ширины текста */
+  transition: color 1.5s ease;    /* плавная смена цвета текста */
+}
+
+/* АКТИВНАЯ карточка: запускаем "заплывание" */
+.card.is-active::before{
+  transform: scaleY(1);            /* слой заполняет карточку */
+}
+
+/* АКТИВНАЯ карточка: текст становится белым */
+.card.is-active p{
+  color: #fff;                     /* белый текст */
+}
+
+/* ===== ИКОНКИ: плавное перекрытие (crossfade) ===== */
+
+/* контейнер иконок */
+.icon{
+  position: relative;              /* чтобы картинки легли друг на друга */
+  width: 160px;                    /* ширина иконки */
+  height: 160px;                   /* высота иконки */
+}
+
+/* обе картинки лежат в одном месте */
+.card .icon img{
+  position: absolute;              /* накладываем друг на друга */
+  inset: 0;                        /* растягиваем по контейнеру */
+  width: 160px;
+  height: 160px;
+  object-fit: contain;             /* чтобы не тянуло */
+  transition: opacity 1.5s ease;  /* плавная смена прозрачности */
+}
+
+/* по умолчанию: dark видна, light скрыта */
+.icon-dark{ opacity: 1; }
+.icon-light{ opacity: 0; }
+
+/* на активной: dark скрывается, light появляется */
+.card.is-active .icon-dark{ opacity: 0; }
+.card.is-active .icon-light{ opacity: 1; }
+
+
+
+
+
+
+
+/* по умолчанию (десктоп) — скрыто */
+.dots{ display: none; }
+
+/* ============================= */
+/* FEATURES MOBILE 414 — как в макете */
+/* ============================= */
+@media (max-width: 414px){
+
+  .features{
+    padding: 40px 22px;
+    display: grid;
+    grid-template-columns: 1fr;   /* одна колонка */
+    row-gap: 18px;
+  }
+
+  /* верхняя строка: точки слева, счетчик справа */
+  .features-left{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  /* точки только на мобилке */
+  .dots{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+  .dot{
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: #D1CDDA;
+    border: 0;
+    padding: 0;
+  }
+  .dot.is-active{ background: #000; }
+
+  /* счетчик справа */
+  .features-left .counter{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;          /* как в макете */
+    font-weight: 500;
+  }
+  .features-left .counter img{
+    width: 52px;
+    height: 1px;
+    opacity: .6;
+  }
+
+  /* стрелки на мобилке не нужны */
+  .arrows{ display: none; }
+
+  /* viewport */
+  .features-viewport{
+    overflow: hidden;
+    touch-action: pan-y; /* разрешаем вертикальный скролл */
+  }
+
+  /* лента: небольшой gap как в макете */
+  .features-track{
+    gap: 18px;
+    transition: transform 0.35s ease;
+    will-change: transform;
+  }
+
+  /* карточка: чтобы следующая выглядывала справа */
+  .card{
+    flex: 0 0 80%;          /* ключ: видим часть следующей */
+    height: 400px;
+    width: 315px;
+    padding: 17px;
+  }
+
+  .icon{
+    width: 150px;
+    height: 150px;
+  }
+  .card .icon img{
+    padding-top: 40px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .card p{
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 100%;
+    font-weight: 500;
+  }
+}
+
+
+
+@media (max-width: 414px){
+
+  /* 1) overlay видно */
+  #menuOverlay{
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999 !important;
+  }
+
+  /* 2) panel колонкой */
+  #menuOverlay #menuPanel{
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #F2F2F4 !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  /* 3) ПРИНУДИТЕЛЬНО показываем menu-right и menu-top */
+  #menuOverlay .menu-right{
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    order: 1 !important;
+  }
+
+  #menuOverlay .menu-top{
+    display: grid !important;
+    height: 90px !important;
+    min-height: 90px !important;
+    grid-template-columns: 1fr 56px !important;
+    align-items: center !important;
+    padding: 0 20px !important;
+    background: #F2F2F4 !important;
+  }
+
+  /* 4) ЛОГО по центру (убиваем любые display:none) */
+  #menuOverlay .menu-top-center{
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  #menuOverlay .menu-logo{
+    display: block !important;
+    width: 160px !important;
+    height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* 5) крестик — в пределах шапки */
+  #menuOverlay #menuClose{
+    position: absolute !important;
+    top: 23px !important;
+    left: 20px !important;
+    z-index: 50 !important;
+    width: 44px !important;
+    height: 44px !important;
+    border: 0 !important;
+    background: transparent !important;
+    font-size: 28px !important;
+    line-height: 44px !important;
+    color: #A5A2AC !important;
+  }
+
+  /* 6) справа только телефон-иконка */
+  #menuOverlay .menu-tel,
+  #menuOverlay .menu-call{
+    display: none !important;
+  }
+
+  #menuOverlay .menu-top-right{
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+
+  #menuOverlay .menu-top-right .telephone-mob{
+    display: block !important;
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  #menuOverlay .menu-top-right .telephone-mob img{
+    display: block !important;
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  /* 7) фото сразу под шапкой */
+  #menuOverlay .menu-left{
+    display: block !important;
+    order: 2 !important;
+    width: 100% !important;
+    height: 220px !important;
+    flex: 0 0 auto !important;
+  }
+
+  #menuOverlay .menu-photo{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  /* 8) тело меню ниже, со скроллом */
+  #menuOverlay .menu-body{
+    display: block !important;
+    order: 3 !important;
+    overflow: auto !important;
+    padding: 18px 22px 28px !important;
+  }
+}

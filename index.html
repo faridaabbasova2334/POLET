@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+
+
+</head>
+<body>
+     <div class="wrapper">
+<header>
+   <div class="container">
+
+        <div class="left">
+
+            <button class="burger" id="openMenuBurger" >
+                <img src="img/burger.png">
+            </button>
+<button type="button" class="flat-btn" id="openMenu">
+  <span class="flat-btn__text">ВЫБРАТЬ КВАРТИРУ</span>
+  <span class="flat-btn__blob" aria-hidden="true"></span>
+</button>
+
+  <!--  Мобильная версия -->
+<button class="button-mob" id="openMenuMob" type="button">
+  <img src="img/burger-mob.png" alt="">
+</button>
+
+
+        </div>
+
+
+
+
+        <div class="center">
+            <img src="img/polet logo.svg" class="logo">
+
+
+
+              <!--  Мобильная версия -->
+                 <img src="img/polet logo.svg" class="logo-mob">
+        </div>
+
+        <div class="right">
+            <a href="tel:+78632046092" class="tel">+7 863 204-60-92</a>
+            <a href="#" class="order-call"><span>ЗАКАЗАТЬ ЗВОНОК</span></a>
+
+            <!--  Мобильная версия -->
+              <a href="tel:+78632046092" class="telephone-mob">
+<img src="img/phone-mob.png"></a>
+
+        </div>
+    </div>
+</header>
+
+
+<!-- Широкое меню -->
+<div class="menu-overlay" id="menuOverlay">
+
+  <div class="menu-panel" id="menuPanel" role="dialog" aria-modal="true" aria-label="Меню">
+
+    <!-- Кнопка закрытия -->
+    <button class="menu-close" id="menuClose" type="button" aria-label="Закрыть меню">✕</button>
+
+    <!-- ЛЕВАЯ КОЛОНКА (фото на всю высоту) -->
+    <div class="menu-left">
+      <img src="img/Rectangle 858.png" class="menu-photo" alt="">
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА: шапка + контент -->
+    <div class="menu-right">
+
+      <!-- Верхняя строка: логотип + телефон + звонок -->
+      <div class="menu-top">
+        <div class="menu-top-center">
+          <img src="img/polet logo.svg" class="menu-logo" alt="ПОЛЁТ">
+        </div>
+
+        <div class="menu-top-right">
+          <a href="tel:+78632046092" class="menu-tel">+7 863 204-60-92</a>
+          <a href="#" class="menu-call"><span>ЗАКАЗАТЬ ЗВОНОК</span></a>
+
+
+
+
+ <!--  Мобильная версия -->
+<a href="tel:+78632046092" class="telephone-mob"><img src="img/phone-mob.png" alt=""></a>
+
+        </div>
+      </div>
+
+      <!-- ТЕЛО МЕНЮ (колонки) -->
+      <div class="menu-body">
+
+        <div class="menu-columns">
+
+          <!-- Колонка 1 -->
+          <div class="menu-col">
+
+            <div class="menu-group">
+              <h3 class="menu-title">МИКРОРАЙОН</h3>
+              <a href="#" class="menu-link">ВЫБРАТЬ КВАРТИРУ</a>
+            </div>
+
+            <div class="menu-group">
+              <h3 class="menu-title">ДОМ В ПРОДАЖЕ</h3>
+              <a href="#" class="menu-link">ЛИТЕР 7.1</a>
+              <a href="#" class="menu-link">ЛИТЕР 7.2</a>
+            </div>
+
+            <div class="menu-group">
+              <h3 class="menu-title">ЮГСТРОЙИНВЕСТ</h3>
+              <a href="#" class="menu-link">О КОМПАНИИ</a>
+              <a href="#" class="menu-link">НОВОСТИ</a>
+              <a href="#" class="menu-link">ПАМЯТКА ДОЛЬЩИКУ</a>
+            </div>
+
+          </div>
+
+          <!-- Колонка 2 -->
+          <div class="menu-col">
+
+            <div class="menu-group">
+              <h3 class="menu-title">СПОСОБЫ ОПЛАТЫ</h3>
+              <a href="#" class="menu-link">ИПОТЕКА</a>
+              <a href="#" class="menu-link">РАССРОЧКА</a>
+              <a href="#" class="menu-link">МАТЕРИНСКИЙ КАПИТАЛ</a>
+            </div>
+
+            <div class="menu-group">
+              <h3 class="menu-title">АКЦИИ</h3>
+              <a href="#" class="menu-link">ВОЕННАЯ ИПОТЕКА</a>
+              <a href="#" class="menu-link">ИПОТЕКА ОТ 4,8%</a>
+              <a href="#" class="menu-link">РАССРОЧКА СО СНИЖЕННЫМ ПВ ДО 20%</a>
+              <a href="#" class="menu-link">КВАРТИРЫ ПО СПЕЦЦЕНЕ</a>
+            </div>
+
+          </div>
+
+        </div><!-- /.menu-columns -->
+
+      </div><!-- /.menu-body -->
+    </div><!-- /.menu-right -->
+
+  </div><!-- /.menu-panel -->
+</div><!-- /.menu-overlay -->
+
+
+
+
+
+<main class="hero">
+
+    <div class="container_two">
+
+        <img src="img/img1.png" class="img-ferst">
+
+        <img src="img/img-mob.png" class="img-mob">
+
+        <div class="container_three">
+            <span>СПОРТИВНЫЙ КОМПЛЕКС РЯДОМ</span>
+            <img src="img/Line 30.png">
+            <span>ШКОЛА У ДОМА</span>
+        </div>
+
+
+        <div class="container_three_dop">
+             <img src="img/Line 30.png" class="img-two-mob" >
+            <span>ПЕРСПЕКТИВНЫЙ РАЙОН</span>
+        </div>
+
+        <h1 class="hero-title">
+            ПРОДАЖА УМНЫХ КВАРТИР ОТКРЫТА
+        </h1>
+
+        <button class="btn_two">
+            <span>ВЫБРАТЬ ПЛАНИРОВКУ</span>
+        </button>
+
+    </div>
+
+    <h1 class="cluster-title">КЛАСТЕР 10</h1>
+</main>
+
+
+
+
+
+
+<section class="home">
+
+    <img src="img/Rectangle 832.png">
+
+<div class="home-content">
+
+            <div class="top-row">
+                <div class="home-text">
+                    <h1>О ДОМАХ</h1>
+                    <p> ПРОДАЖИ КВАРТИР С УМНЫМИ ПЛАНИРОВКАМИ <br>УЖЕ ОТКРЫТЫ.</p>
+                </div>
+            </div>
+
+                        <div class="bottom-row">
+
+                        <div class="left"> 
+
+                      <div class="home-text-two">
+                                  <p>
+                                    КЛАСТЕР 10 — ЭТО ДВА ЗДАНИЯ, ОБЪЕДИНЕННЫХ ЗАКРЫТЫМ ДВОРОМ. 
+                                    ДЛЯ КОМФОРТА ЖИТЕЛЕЙ НОВОГО КЛАСТЕРА ЗДЕСЬ АКТИВНО 
+                                    ИСПОЛЬЗУЮТСЯ ЦИФРОВЫЕ ТЕХНОЛОГИИ.
+                                  </p>
+                                </div>
+                        </div>
+
+             
+             
+           <div class="right">
+
+
+            <div class="info">
+                <span class="value">2 ДОМА</span>
+                <span class="label">ДВОР БЕЗ МАШИН</span>
+            </div>
+
+            <div class="info">
+                <span class="value">6–20 ЭТАЖЕЙ</span>
+                <span class="label">ПЕРЕМЕННАЯ ВЫСОТНОСТЬ</span>
+            </div>
+
+            <div class="info">
+                <span class="value">2024 ГОД</span>
+                <span class="label">СДАЧА ДОМА</span>
+            </div>
+
+            <div class="info">
+                <span class="value">1 ШКОЛА</span>
+                <span class="label">НАПРОТИВ КЛАСТЕРА</span>
+            </div>
+
+            </div>
+                            </div>
+ </div>
+
+      
+
+</section>
+
+
+<section class="slider-section">
+  <img src="img/img-for-mob.png" class="img-for-mob">
+  <div class="slider">
+    <img src="img/img2.png" class="slide" alt="">
+    <img src="img/img3.png" class="slide" alt="">
+    <img src="img/img4.png" class="slide" alt="">
+  </div>
+</section>
+
+
+<div class="digital">
+
+    
+  <div class="digital-left">
+
+<img src="img/Rectangle 832.png" class="digital-line">
+
+    <h1>ЦИФРОВИЗАЦИЯ</h1>
+    <h2>В ДЕТАЛЯХ</h2>
+  </div>
+
+  <p class="digital-text">
+    КАЧЕСТВЕННО НОВЫЙ УРОВЕНЬ ЖИЗНИ БУДЕТ
+    ОБЕСПЕЧЕН БЛАГОДАРЯ ВНЕДРЕНИЮ ТЕХНОЛОГИЙ
+    В БЛАГОУСТРОЙСТВО 10 КЛАСТЕРА.
+  </p>
+</div>
+
+
+
+
+<section class="features">
+  <div class="features-left">
+
+<div class="dots" id="dots" aria-label="Позиция слайдера"></div>
+
+
+    <div class="counter">
+      <span id="cur">01</span>
+      <img src="img/Line 30.png" alt="">
+      <span id="total">06</span>
+    </div>
+
+    <div class="arrows">
+      <button class="arrow" id="prev" aria-label="Предыдущий слайд">
+        <img src="img/button.png" alt="">
+      </button>
+
+      <button class="arrow" id="next" aria-label="Следующий слайд">
+        <img src="img/button2.png" alt="">
+      </button>
+    </div>
+  </div>
+
+  <div class="features-viewport">
+    <div class="features-track" id="track">
+
+      <!-- СЛАЙД 1 -->
+      <article class="card is-active">
+        <div class="icon">
+          <img class="icon-light" src="img/phone.png" alt="">
+          <img class="icon-dark" src="img/phone-black.png" alt="">
+        </div>
+        <p>УНИВЕРСАЛЬНОЕ ПРИЛОЖЕНИЕ ДЛЯ ОПЛАТЫ СЧЁТОВ И РЕШЕНИЯ БЫТОВЫХ ВОПРОСОВ</p>
+      </article>
+
+      <!-- СЛАЙД 2 -->
+      <article class="card">
+        <div class="icon">
+          <img class="icon-dark" src="img/usb-black.png" alt="">
+          <img class="icon-light" src="img/usb-white.png" alt="">
+        </div>
+        <p>ЗАРЯДНЫЕ СТАНЦИИ ДЛЯ ГАДЖЕТОВ В КОВОРКИНГ-БЕСЕДКАХ</p>
+      </article>
+
+
+ <!-- СЛАЙД 3  -->
+      <article class="card">
+        <div class="icon">
+          <img class="icon-dark" src="img/camera-black.png" alt="">
+          <img class="icon-light" src="img/camera-white.png" alt="">
+        </div>
+        <p>КРУГЛОСУТОЧНОЕ ВИДЕОНАБЛЮДЕНИЕ ЧЕРЕЗ СМАРТФОН</p>
+      </article>
+
+      <!-- СЛАЙД 4  -->
+      <article class="card">
+        <div class="icon">
+          <img class="icon-dark" src="img/click-black.png" alt="">
+          <img class="icon-light" src="img/click-white.png" alt="">
+        </div>
+        <p>БЕСКОНТАКТНЫЙ ДОСТУП НА ТЕРРИТОРИЮ</p>
+      </article>
+
+
+ <!-- СЛАЙД 5  -->
+      <article class="card">
+        <div class="icon">
+          <img class="icon-dark" src="img/wi-fi-black.png" alt="">
+          <img class="icon-light" src="img/wi-fi-white.png" alt="">
+        </div>
+        <p>БЕСШОВНЫЙ БЕСПЕРЕБОЙНЫЙ WI-FI В ЛЮБОЙ ТОЧКЕ</p>
+      </article>
+
+
+   <!-- СЛАЙД 4  -->
+          <article class="card">
+        <div class="icon">
+          <img class="icon-dark" src="img/face-black.png" alt="">
+          <img class="icon-light" src="img/face-white.png" alt="">
+        </div>
+        <p>РАСПОЗНАВАНИЕ ЛИЦ И НОМЕРОВ АВТОМОБИЛЕЙ</p>
+      </article>
+   
+    </div>
+  </div>
+</section>
+
+
+
+
+
+     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+
+ <script src="script.js"></script>
+
+</body>
+
+</html>
